@@ -23,7 +23,7 @@ IMAGE_WIDTH = 1920
 IMAGE_HEIGHT = 1080
 
 # Nom du fichier CSV global
-CSV_FILENAME = "image_processing_parallel_results.csv"
+CSV_FILENAME = "image_processing_parallel_results"
 
 def apply_filter(image):
     """
@@ -118,9 +118,10 @@ def test_time(nb_images):
             if rank == 0:
                 total_time = time.perf_counter() - start_time
                 
-                file_exists = os.path.exists(CSV_FILENAME)
+                fname= f"{CSV_FILENAME}_{size}.csv"
+                file_exists = os.path.exists(fname)
                 
-                with open(CSV_FILENAME, "a", newline="") as csvfile:
+                with open(fname, "a", newline="") as csvfile:
                     writer = csv.writer(csvfile)
                     
                     if not file_exists:
@@ -168,4 +169,8 @@ if __name__ == "__main__":
         total_time = time.perf_counter() - total_start_time
         print(f"\nTemps total d'exécution de tous les tests: {total_time:.3f}s")
     
-    MPI.Finalize() 
+    MPI.Finalize()
+
+# Pour exécuter le programme :
+# mpirun -n N python movie_filter_parallel.py
+# où N est le nombre de processus à utiliser 

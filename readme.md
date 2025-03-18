@@ -111,3 +111,15 @@ On applique le filtre $F_{G}$ sur les deux composantes $H$ et $S$ de l'image et 
 - Quelles sont les différences, désavantages et avantages de votre stratégie de parallélisation par rapport à la question précédente ?
 - Paralléliser le programme `double_size2.py` correspondant à ce problème.
 - Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs dont vous disposez) la courbe d'accélération de votre programme parallèle.
+
+
+Pour exécuter les scripts :
+Activer l'environement virtuel:
+```bash
+source venv/bin/Activate
+```
+
+```bash
+mpirun -n N python movie_filter_parallel.py
+```
+où N est le nombre de processus à utiliser (dans la limite du nombre de cœurs disponibles).
